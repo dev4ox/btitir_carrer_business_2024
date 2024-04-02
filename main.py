@@ -63,6 +63,14 @@ if __name__ == '__main__':
         u_data = [call.from_user.id, call.message.message_id, call.from_user.first_name]
         if 'quiz' in call.data:
             c_data = call.data.split('_')
+            if int(c_data[1]) <= int(c_data[2]):
+                f_data = func.question_import(c_data[1], c_data[2])
+                f_data['code'] = c_data[3]
+                bot.edit_message_text(
+                    f'<b>Вопрос №{f_data["id"]}</b>\n{f_data["question"]}',
+                    u_data[0], u_data[1],
+                    reply_markup=menu.quiz(f_data)
+                )
 
         elif 'main' == call.data:
             bot.edit_message_text(txt.start.format(u_data[2]), u_data[0], u_data[1], reply_markup=menu.start())

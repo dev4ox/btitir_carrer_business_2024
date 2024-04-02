@@ -9,7 +9,7 @@ def start():
     markup = types.InlineKeyboardMarkup(row_width=1)
 
     # Создаем объекты кнопок для добавления в разметку
-    btn_1 = types.InlineKeyboardButton('🕹️ Викторина', callback_data='quiz_0')
+    btn_1 = types.InlineKeyboardButton('🕹️ Викторина', callback_data='quiz_1_0_0000')
     btn_2 = types.InlineKeyboardButton('ℹ️ О нас', url='https://doninteh.ru')
 
     # Добавляем кнопки в разметку и возвращаем нашу разметку чтобы прикрепить её к исходящему сообщению
