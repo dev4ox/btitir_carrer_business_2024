@@ -64,7 +64,7 @@ if __name__ == '__main__':
         if 'quiz' in call.data:
             c_data = call.data.split('_')
             if int(c_data[1]) <= int(c_data[2]):
-                f_data = func.question_import(c_data[1], c_data[2])
+                f_data = func.question_import(int(c_data[1]), int(c_data[2]))
                 f_data['code'] = c_data[3]
                 bot.edit_message_text(
                     f'<b>Вопрос №{f_data["id"]}</b>\n{f_data["question"]}',
