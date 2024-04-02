@@ -11,7 +11,7 @@ def create():
                         fac INTEGER,
                         question TEXT,
                         answer TEXT,
-                        status INTEGER
+                        correct TEXT
                         )''')
         conn.commit()
         return True
