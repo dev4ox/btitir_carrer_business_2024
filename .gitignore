@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 key.py
 test/
+db.sqlite
 
 # C extensions
 *.so
