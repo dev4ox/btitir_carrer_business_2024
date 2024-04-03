@@ -26,12 +26,12 @@ def question_update(excel_file:str) -> bool:
 
 
 # Импорт вопроса из БД
-def question_import(n_quest: int, max_quest: int | None) -> dict:
+def question_import(n_quest: int, max_quest: int) -> dict:
     result = dict()
-    conn = sqlite3.connect('../' + key.db)
+    conn = sqlite3.connect(key.db)
     try:
         cur = conn.cursor()
-        if max_quest is None:
+        if max_quest <= 1:
             cur.execute(f"SELECT COUNT(*) FROM quiz")
             result['max_quest'] = cur.fetchone()[0]
         else:

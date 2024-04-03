@@ -1,5 +1,13 @@
 from telebot import types
-from random import choices
+import random
+
+
+CODE_REQUEST = {
+    'И': 1,
+    'Р': 10,
+    'Э': 100,
+    'О': 1000
+}
 
 
 def main():
@@ -17,7 +25,7 @@ def main():
 
 def start():
     markup = types.InlineKeyboardMarkup(row_width=1)
-    btn_1 = types.InlineKeyboardButton('🕹️ Викторина', callback_data='quiz_1_0_0000')
+    btn_1 = types.InlineKeyboardButton('🕹️ Викторина', callback_data='quiz_1_1_0000')
     btn_2 = types.InlineKeyboardButton('ℹ️ О нас', url='https://doninteh.ru')
     return markup.add(btn_1, btn_2)
 
@@ -28,7 +36,30 @@ def help():
     return markup.add(btn_1)
 
 
+'''
+max_quest: 12
+id: 1
+fac: И
+question: Какой язык программирования используется для разработки веб-приложений?
+answer: JavaScript;Python;Java;HTML
+correct: JavaScript
+code: 0000
+'''
 def quiz(data: dict):
-    for i, j in data.values():
-        print(f'{i}: {j}')
-    return main()
+    answer_list = data['answer'].split(';')
+    print(answer_list)
+    callback_list = []
+    for i in answer_list:
+        if i == data['correct']:
+            new_code = str(int(data['code']) + CODE_REQUEST[data['fac']]).zfill(len(data['code']))
+            callback_list.append(f'quiz_{data["id"]}_{data["max_quest"]}_{new_code}')
+        else:
+            callback_list.append(f'quiz_{data["id"]}_{data["max_quest"]}_{data["code"]}')
+
+    markup = types.InlineKeyboardMarkup(row_width=2)
+    btn_1 = types.InlineKeyboardButton('', callback_data='')
+    btn_2 = types.InlineKeyboardButton('', callback_data='')
+    btn_3 = types.InlineKeyboardButton('', callback_data='')
+    btn_4 = types.InlineKeyboardButton('', callback_data='')
+    btn_5 = types.InlineKeyboardButton('⬅️ Главное меню', callback_data='main')
+    return markup.add(btn_5)

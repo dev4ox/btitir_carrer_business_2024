@@ -71,6 +71,8 @@ if __name__ == '__main__':
                     u_data[0], u_data[1],
                     reply_markup=menu.quiz(f_data)
                 )
+            else:
+                pass
 
         elif 'main' == call.data:
             bot.edit_message_text(txt.start.format(u_data[2]), u_data[0], u_data[1], reply_markup=menu.start())
