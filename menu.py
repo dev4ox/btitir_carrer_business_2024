@@ -60,8 +60,7 @@ def quiz(data: dict):
             callback_list.append(f'quiz_{int(data["id"]) + 1}_{data["max_quest"]}_{new_code}')
         else:
             callback_list.append(f'quiz_{int(data["id"]) + 1}_{data["max_quest"]}_{data["code"]}')
-    print(answer_list)
-    print(callback_list)
+
     # Реализуем кнопочки)
     markup = types.InlineKeyboardMarkup(row_width=1)
     btn_1 = types.InlineKeyboardButton(answer_list[0], callback_data=callback_list[0])
