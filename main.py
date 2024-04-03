@@ -72,7 +72,9 @@ if __name__ == '__main__':
                     reply_markup=menu.quiz(f_data)
                 )
             else:
-                pass
+                bot.edit_message_text(txt.quiz_finall(c_data[3]), u_data[0], u_data[1], reply_markup=menu.main())
+        elif 'specialists' == call.data:
+            bot.edit_message_text(txt.specialists, u_data[0], u_data[1], reply_markup=menu.main())
 
         elif 'main' == call.data:
             bot.edit_message_text(txt.start.format(u_data[2]), u_data[0], u_data[1], reply_markup=menu.start())
