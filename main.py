@@ -9,8 +9,7 @@ import os
 bot = telebot.TeleBot(key.tgtoken, 'html', disable_web_page_preview=False)
 
 
-# Создаем точку входа программы
-if __name__ == '__main__':
+def main_code():
     # Создаем декоратор-перехватчик для работы с командами /start, /help
     @bot.message_handler(['start', 'help'])
     def start_command(message):
@@ -72,7 +71,7 @@ if __name__ == '__main__':
                     reply_markup=menu.quiz(f_data)
                 )
             else:
-                bot.edit_message_text(txt.quiz_finall(c_data[3]), u_data[0], u_data[1], reply_markup=menu.main())
+                bot.edit_message_text(txt.quiz_final(c_data[3]), u_data[0], u_data[1], reply_markup=menu.main())
         elif 'specialists' == call.data:
             bot.edit_message_text(txt.specialists, u_data[0], u_data[1], reply_markup=menu.main())
 
@@ -80,3 +79,16 @@ if __name__ == '__main__':
             bot.edit_message_text(txt.start.format(u_data[2]), u_data[0], u_data[1], reply_markup=menu.start())
 
     bot.polling(none_stop=True)
+
+
+# Вечная работа обеспечена!
+def start_bot():
+    try:
+        main_code()
+    except Exception as e:
+        start_bot()
+
+
+# Создаем точку входа программы
+if __name__ == '__main__':
+    start_bot()
