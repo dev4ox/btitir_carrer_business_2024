@@ -62,6 +62,7 @@ def main_code():
         u_data = [call.from_user.id, call.message.message_id, call.from_user.first_name]
         if 'quiz' in call.data:
             c_data = call.data.split('_')
+            print(c_data[3])
             if int(c_data[1]) <= int(c_data[2]):
                 f_data = func.question_import(int(c_data[1]), int(c_data[2]))
                 f_data['code'] = c_data[3]
